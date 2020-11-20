@@ -110,12 +110,13 @@ export class TaskQueue<T, R> implements ITaskQueue<T, R> {
 
   /**
    * 把请求响应结果分发到各个Task的回调中
+   * @param ts
    * @param rs
    */
   dispatch(ts: T[], rs: R[]): void {
     const mrs = this.executor.reorderMap(ts, rs);
-    if (mrs.length !== rs.length) {
-      console.error("reorderMap应该返回和rs等长的数组");
+    if (mrs.length !== ts.length) {
+      console.error("reorderMap应该返回和ts等长的数组");
     } else {
       this.executingQueue.forEach((it, i) => {
         it.callback(mrs[i]);
