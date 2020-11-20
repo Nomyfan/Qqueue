@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MyTask, scheduler } from "./example-task-scheduler";
+import { MyTask, taskQueue } from "./example-qqueue";
 
 export function UUID(prop: { id: number; color: string }) {
   const [uuid, setUuid] = useState("");
@@ -9,7 +9,7 @@ export function UUID(prop: { id: number; color: string }) {
     const task = new MyTask(id, (r?: { id: number; uuid: string }) => {
       setUuid(r?.uuid ?? "oops");
     });
-    scheduler.enqueue(task);
+    taskQueue.enqueue(task);
   }, [id]);
 
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import { scheduler } from "./example-task-scheduler";
+import { taskQueue } from "./example-qqueue";
 import { UUID } from "./UUID";
 
-scheduler.run();
+taskQueue.run();
 
 function App() {
   const colors = [

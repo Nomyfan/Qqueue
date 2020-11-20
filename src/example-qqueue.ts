@@ -1,9 +1,4 @@
-import {
-  IExecutor,
-  ITask,
-  ITaskScheduler,
-  TaskScheduler,
-} from "./task-scheduler";
+import { IExecutor, ITask, ITaskQueue, TaskQueue } from "./qqueue";
 
 export class MyExecutor
   implements IExecutor<{ id: number }, { id: number; uuid: string }> {
@@ -46,8 +41,7 @@ export class MyTask
   }
 }
 
-export const scheduler = new TaskScheduler(
-  3,
-  1000,
-  new MyExecutor()
-) as ITaskScheduler<{ id: number }, { id: number; uuid: string }>;
+export const taskQueue = new TaskQueue(3, 1000, new MyExecutor()) as ITaskQueue<
+  { id: number },
+  { id: number; uuid: string }
+>;
